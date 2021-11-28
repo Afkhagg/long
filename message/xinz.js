@@ -266,14 +266,26 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
         game.cekWaktuTG(xinz, tebakgambar)
 
         // GAME 
-        if (game.isTebakGambar(from, tebakgambar) && isUser){
-            if (chats.toLowerCase().includes(game.getJawabanTG(from, tebakgambar))){
-                var htgm = randomNomor(100)
-                addBalance(sender, htgm, balance)
-                await reply(`*Selamat jawaban kamu benar*\n*Jawaban :* ${game.getJawabanTG(from, tebakgambar)}\n*Hadiah :* $${htgm}\n\nIngin bermain lagi? kirim *${prefix}tebakgambar*`)
-                tebakgambar.splice(game.getTGPosi(from, tebakgambar), 1)
-            }
-        }
+        Client.cmd.on('tebakgambar', async (data) => {
+			if(isLimit(data.sender)) return data.reply(mess.limit)
+			if (global.tebakgambar[data.from] && global.tebakgambar[data.from].id) return data.reply("Masih ada soal yang berjalan")
+            const getSoal = await axios.get(`${configs.apiUrl}/api/tebakgambar?apikey=${configs.zeksKey}`)
+			ses = Date.now()
+			send = await Client.sendFileFromUrl(data.from, getSoal.data.result.soal, "soal.jpg", "Waktu menjawab 30 detik!", data.message)
+			global.tebakgambar[data.from] = {jawaban: getSoal.data.result.jawaban, id: ses}
+			await sleep(10000)
+			if (global.tebakgambar[data.from].id != ses) return
+			Client.reply(data.from,"Waktu tersisa 20 detik", send)
+			await sleep(10000)
+			if (global.tebakgambar[data.from].id != ses) return
+			Client.reply(data.from,"Waktu tersisa 10 detik", send)
+			await sleep(10000)
+			if (global.tebakgambar[data.from].id != ses) return
+			Client.reply(data.from, "Waktu habis", send)
+			Client.reply(data.from,`Jawabannya adalah: ${getSoal.data.result.jawaban}`, send)
+			global.tebakgambar[data.from] = {}
+			
+        })
         if (game.isfam(from, family100) && isUser){
             var anjuy = game.getjawaban100(from, family100)
             for (let i of anjuy){
