@@ -883,7 +883,6 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
                 case 'smoketext':
                 case 'flowertext':
                 case 'lithgtext':
-                case 'nulis':
                     try {
                     if(isLimit(data.sender)) return data.reply(mess.limit)
                     if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}${data.command} [ teks ]*\nContoh : ${data.prefix}${data.command} shiro`)
