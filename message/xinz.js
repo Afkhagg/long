@@ -1651,7 +1651,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                 reply(mess.wait)
 						axios.get(`https://waifu.pics/api/sfw/waifu`)
 						.then(({data}) => {
-						sendFileFromUrl(from, data.url, 'Neh', msg)
+						sendFileFromUrl(from, data.url, 'waifu', msg)
 						})
 						limitAdd(sender, limit)
 						}
@@ -1659,9 +1659,9 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
 			case prefix+'nekonime':{
                 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
                 reply(mess.wait)
-						axios.get(`https://api-ramlan.herokuapp.com/api/neko?apikey=${apikey}`)
+						axios.get(`https://waifu.pics/api/sfw/neko`)
 						.then(({data}) => {
-						sendFileFromUrl(from, data.link, 'Neh', msg)
+						sendFileFromUrl(from, data.link, 'Nekonime', msg)
 						})
 						limitAdd(sender, limit)
 						}
@@ -1685,7 +1685,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                 reply(mess.wait)
 						axios.get('https://waifu.pics/api/sfw/shinobu')
 						.then(({data}) => {
-						sendFileFromUrl(from, data.url, 'Neh', msg)
+						sendFileFromUrl(from, data.url, 'shinobu', msg)
 						})
 						limitAdd(sender, limit)
 						}
@@ -1695,7 +1695,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                 reply(mess.wait)
                 axios.get(`https://waifu.pics/api/sfw/shinobu`)
 						.then(({data}) => {
-						sendFileFromUrl(from, data.url, 'Neh', msg)
+						sendFileFromUrl(from, data.url, 'loli', msg)
 						})
 						limitAdd(sender, limit)
 						}
