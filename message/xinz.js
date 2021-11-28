@@ -856,93 +856,74 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
                 break
             
 //------------------< Text Marker >-------------------
-            case prefix+'harta': case prefix+'hartatahta': case prefix+'tahta':{
-                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
-                if (args.length < 2) return reply(`Penggunaan ${command} text\n\nContoh : ${command} Rara`)
-                reply('[❗] Hirti Tihti Tai Anjg :v')
-                xinz.sendImage(from, await getBuffer(`https://api-ramlan.herokuapp.com/api/other/tahta?q=${args[1]}&apikey=${apikey}`), '', msg).catch(() => reply(mess.error.api))
-                limitAdd(sender, limit)
-                }
-                break
-//>>> TEXT PRO ME
-                case prefix+'neon':
-                case prefix+'matrix':
-                case prefix+'blackpink':
-                case prefix+'halloween':
-                case prefix+'thundername':
-                case prefix+'devilwings':
-                case prefix+'cloudtext':
-                case prefix+'bloodtext':
-                case prefix+'bloodtext2':
-                case prefix+'steeltext':
-                case prefix+'lavatext':
-                case prefix+'toxiclogo':
-                case prefix+'dropwater':
-                case prefix+'metaldark':
-                case prefix+'sandwrite':
-                case prefix+'3dwater':
-                case prefix+'graffiti':{
-                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
-                if (args.length < 2) return reply(`Penggunaan ${command} text\n\nContoh : ${command} xinz`)
-                reply(mess.wait)
-                xinz.sendImage(from, await getBuffer(`https://api-ramlan.herokuapp.com/api/textpro/${command.slice(1)}?apikey=${apikey}&text=${q}`), '', msg).catch(() => reply(mess.error.api))
-                limitAdd(sender, limit)
-                }
+            case 'qrencode':
+                case 'barcode':
+                case 'bneon':
+                case 'matrix':
+                case 'breakwall':
+                case 'gneon':
+                case 'dropwater':
+                case 'tfire':
+                case 'sandw':
+                case 'epep':
+                case 'gplaybutton':
+                case 'splaybutton':
+                case 'text3dbox':
+                case 'text3d':
+                case 'logobp':
+                case 'leavest':
+                case 'thundertext':
+                case 'tlight':
+                case 'naruto':
+                case 'crosslogo':
+                case 'cslogo':
+                case 'crismes':
+                case 'flametext':
+                case 'glowtext':
+                case 'smoketext':
+                case 'flowertext':
+                case 'lithgtext':
+                case 'nulis':
+                    try {
+                    if(isLimit(data.sender)) return data.reply(mess.limit)
+                    if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}${data.command} [ teks ]*\nContoh : ${data.prefix}${data.command} shiro`)
+                    data.reply(mess.wait)
+                    Client.sendFileFromUrl(from, `${configs.apiUrl}/api/${command}?text=${data.body}&apikey=${configs.zeksKey}`, 'gambar.jpg', `*Gambar berhasil dibuat!* @${data.sender.split('@')[0]}`, message)
+                    } catch {
+                        data.reply('error')
+                    }
                     break
-                case prefix+'graffiti2':
-                case prefix+'phlogo':
-                case prefix+'glitch':                
-                case prefix+'graffiti3':
-                case prefix+'layeredtext':
-                case prefix+'vintage':
-                case prefix+'3dspace':
-                case prefix+'stonetext':
-                case prefix+'avengers':
-                case prefix+'marvellogo':
-                case prefix+'3dmetal':
-                case prefix+'lionlogo':
-                case prefix+'wolflogo':
-                case prefix+'ninjalogo':{
-                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
-                if (args.length < 2) return reply(`Penggunaan ${command} text1|text2\n\nContoh : ${command} Ramlan|Rara`)
-                if (!q.includes("|")) return reply(`Penggunaan ${command} text1|text2\n\nContoh : ${command} Ramlan|Rara`)
-                reply(mess.wait)
-                xinz.sendImage(from, await getBuffer(`https://api-ramlan.herokuapp.com/api/textpro2/${command.slice(1)}?apikey=${apikey}&text1=${q.split("|")[0]}&text2=${q.split("|")[1]}`), '', msg).catch(() => reply(mess.error.api))
-                limitAdd(sender, limit)
-                }
-                    break
-//>>> PHOTOOXY
-                case prefix+'shadowtext':
-                case prefix+'smoketext':
-                case prefix+'romancetext':
-                case prefix+'carvedwood':
-                case prefix+'harrypotter':
-                case prefix+'flamingtext':
-                case prefix+'falleaves':
-                case prefix+'underwater':
-                case prefix+'wolfmetal':
-                case prefix+'woodboard':
-                case prefix+'undergrass':
-                case prefix+'coffetext':
-                case prefix+'lovetext':
-                case prefix+'burnpaper':
-                case prefix+'lovemessage':{
-                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
-                if (args.length < 2) return reply(`Penggunaan ${command} text\n\nContoh : ${command} xinz`)
-                reply(mess.wait)
-                xinz.sendImage(from, await getBuffer(`https://api-ramlan.herokuapp.com/api/photooxy/${command.slice(1)}?apikey=${apikey}&text=${q}`), '', msg).catch(() => reply(mess.error.api))
-                limitAdd(sender, limit)
-                }
-                    break
-                case prefix+'pubglogo':{
-                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
-                if (args.length < 2) return reply(`Penggunaan ${command} text1|text2\n\nContoh : ${command} Ramlan|Rara`)
-                if (!q.includes("|")) return reply(`Penggunaan ${command} text1|text2\n\nContoh : ${command} Ramlan|Rara`)
-                reply(mess.wait)
-                xinz.sendImage(from, await getBuffer(`https://api-ramlan.herokuapp.com/api/photooxy/pubglogo?apikey=${apikey}&text1=${q.split("|")[0]}&text2=${q.split("|")[1]}`), '', msg).catch(() => reply(mess.error.api))
-                limitAdd(sender, limit)
-                }
-                    break
+                case 'wolflogo':
+                case 'logoaveng':
+                case 'phlogo':
+                case 'marvellogo':
+                case 'gtext':
+                case 'pubglogo':
+                case 'snowwrite':
+                case 'watercolour':
+                    try {
+                    if(isLimit(data.sender)) return data.reply(mess.limit)
+                    if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}${data.command} [ teks1|teks2 ]*\nContoh : ${data.prefix}${data.command} shiro|elios`)
+                    data.reply(mess.wait)
+                    p = data.body
+                    text = p.split('|')
+                    Client.sendFileFromUrl(from, `${configs.apiUrl}/api/${command}?apikey=${configs.zeksKey}&text1=${text[0]}&text2=${text[1]}`, 'p.jpg', `*Gambar berhasil dibuat!* @${data.sender.split('@')[0]}`, message)
+                    } catch {
+                        data.reply('error')
+                    }
+					break
+                case 'tahta':
+                case 'harta':
+                case 'hartatahta':
+                    if(isLimit(data.sender)) return data.reply(mess.limit)
+                    if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}${data.command} [ teks ]*\nContoh : ${data.prefix}${data.command} shiro`)
+                    data.reply(mess.wait)
+                    Client.sendFileFromUrl(from, `${configs.apiUrl}/api/hartatahta?text=${data.body}&apikey=${configs.zeksKey}`, 'harta.jpg', `*Gambar berhasil dibuat!* @${data.sender.split('@')[0]}`, message)
+                    Client.sendStickerFromUrl(from, `${configs.apiUrl}/api/hartatahta?text=${data.body}&apikey=${configs.zeksKey}`, message, {
+                        crop: false,
+                        pack: 'Pack',
+                        author: 'AUTHOR'
+                    })
 //------------------< Math Random >-------------------
 				case prefix+'ganteng':
 					if (!isGroup)return reply(mess.OnlyGrup)
